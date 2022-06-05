@@ -6,7 +6,7 @@
   <link href="http://www.bevan.club/atom.xml" rel="self"/>
   
   <link href="http://www.bevan.club/"/>
-  <updated>2022-06-05T09:39:01.032Z</updated>
+  <updated>2022-06-05T10:02:44.542Z</updated>
   <id>http://www.bevan.club/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL学习笔记</title>
+    <link href="http://www.bevan.club/2022/06/05/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://www.bevan.club/2022/06/05/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-06-05T10:00:43.000Z</published>
+    <updated>2022-06-05T10:02:44.542Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MySQL学习"><a href="#MySQL学习" class="headerlink" title="MySQL学习"></a>MySQL学习</h1><p><a href="https://www.bilibili.com/video/BV1iq4y1u7vj">https://www.bilibili.com/video/BV1iq4y1u7vj</a></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><img src="https://raw.githubusercontent.com/bevancheng/imgrepo/main/image-20220605180234515.png?token=AHMFLSBKYYFLOJC4QLNKF43CTR7XS" alt="image-20220605180234515"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;MySQL学习&quot;&gt;&lt;a href=&quot;#MySQL学习&quot; class=&quot;headerlink&quot; title=&quot;MySQL学习&quot;&gt;&lt;/a&gt;MySQL学习&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1iq4y1u7</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>test</title>

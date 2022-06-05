@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="Bevan&#39;s Blog">
 <meta property="og:description" content="关于MySQL的隔离级别前几天美团的面试问到MySQL的隔离级别、加锁、索引等知识，由于之前没怎么深入学习过数据库，所以答得并不是很好。后来反问环节中，面试官建议可以在学习的时候多思考一下，如果需要自己实现这些功能的话会怎么做，这样进行学习效率会很高。 之后计划跟一下尚硅谷的课程https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1iq4y1u7vj ，系统性的学习一下MySQL数据">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://image-upyun-bevan.test.upcdn.net/202206052026692.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/bevancheng/imgrepo/main/202206052109527.png?token=AHMFLSEUNLAYZXZ7733BWNLCTSVVM">
 <meta property="article:published_time" content="2022-06-05T10:00:43.000Z">
-<meta property="article:modified_time" content="2022-06-05T13:00:36.662Z">
+<meta property="article:modified_time" content="2022-06-05T13:09:51.842Z">
 <meta property="article:author" content="Bevan c">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://image-upyun-bevan.test.upcdn.net/202206052026692.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/bevancheng/imgrepo/main/202206052109527.png?token=AHMFLSEUNLAYZXZ7733BWNLCTSVVM">
 
 <link rel="canonical" href="http://www.bevan.club/2022/06/05/%E5%85%B3%E4%BA%8EMySQL%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
 
@@ -198,7 +198,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-06-05 18:00:43 / Modified: 21:00:36" itemprop="dateCreated datePublished" datetime="2022-06-05T18:00:43+08:00">2022-06-05</time>
+              <time title="Created: 2022-06-05 18:00:43 / Modified: 21:09:51" itemprop="dateCreated datePublished" datetime="2022-06-05T18:00:43+08:00">2022-06-05</time>
             </span>
 
           
@@ -232,7 +232,7 @@
 <p>查询表的隔离界别：<code>show variables like &#39;%iso%&#39;;</code> <code>select @@transaction_isolation;</code></p>
 <p>设置表的隔离级别：<code>set session transaction isolation level read committed;</code> </p>
 <p><code>read uncommitted</code>，<code>repeatable read</code>，<code>serializable</code></p>
-<p><img src="http://image-upyun-bevan.test.upcdn.net/202206052026692.png" alt="image-20220605202620642"></p>
+<p><img src="https://raw.githubusercontent.com/bevancheng/imgrepo/main/202206052109527.png?token=AHMFLSEUNLAYZXZ7733BWNLCTSVVM" alt="img"></p>
 <p>此时如果开两个事务，事务1进行查询，事务2进行插入，即使事务2提交了事务，事务1也是查询不到事务2提交了的事务的。</p>
 <p>创建表<code> create table test(num integer);insert into test values(1),(2),(3);</code></p>
 <p>首先事务1和2都<code>begin;</code>，事务2<code>insert into test values(10);commit;</code>，此时事务1即使<code>select * from test;</code>也是查不到事务2刚刚insert进的数据的，只有事务1也<code>commit;</code>后才能查到。</p>

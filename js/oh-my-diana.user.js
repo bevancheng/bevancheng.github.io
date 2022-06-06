@@ -4,7 +4,7 @@
 // @version             1.0.1
 // @namespace           https://github.com/journey-ad
 // @author              journey-ad
-// @include             /^https:\/\/(www|live|space|t)\.bilibili\.com\/.*$/
+// @include             /^*$/
 // @icon                https://www.google.com/s2/favicons?domain=bilibili.com
 // @license             GPL v2
 // @run-at              document-end

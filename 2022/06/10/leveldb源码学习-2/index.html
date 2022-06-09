@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/bevancheng/imgrepo/main/202206092334410.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/bevancheng/imgrepo/main/202206092343295.jpeg">
 <meta property="article:published_time" content="2022-06-09T17:42:23.000Z">
-<meta property="article:modified_time" content="2022-06-09T17:42:23.199Z">
+<meta property="article:modified_time" content="2022-06-09T18:00:11.909Z">
 <meta property="article:author" content="Bevan c">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="leveldb">
@@ -202,8 +202,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-06-10 01:42:23" itemprop="dateCreated datePublished" datetime="2022-06-10T01:42:23+08:00">2022-06-10</time>
+              <time title="Created: 2022-06-10 01:42:23 / Modified: 02:00:11" itemprop="dateCreated datePublished" datetime="2022-06-10T01:42:23+08:00">2022-06-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,6 +231,7 @@
 <p><code>char* AllocateAligned(size_t bytes);</code>按照malloc 提供的对齐标准分配内存。</p>
 <p>Arena类中的私有成员<code>char* alloc_ptr_;</code>和<code>size_t alloc_bytes_remaining_;</code>标记分配内存后的状态。</p>
 <p><code>std::vector&lt;char*&gt; blocks_;</code>保存每个用new[]创建后的内存指针。</p>
+<span id="more"></span>
 <p>从Allocate看起</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">char</span>* <span class="title">Arena::Allocate</span><span class="params">(<span class="type">size_t</span> bytes)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// The semantics of what to return are a bit messy if we allow</span></span><br><span class="line">  <span class="comment">// 0-byte allocations, so we disallow them here (we don&#x27;t need</span></span><br><span class="line">  <span class="comment">// them for our internal use).</span></span><br><span class="line">  <span class="built_in">assert</span>(bytes &gt; <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> (bytes &lt;= alloc_bytes_remaining_) &#123;</span><br><span class="line">    <span class="type">char</span>* result = alloc_ptr_;</span><br><span class="line">    alloc_ptr_ += bytes;</span><br><span class="line">    alloc_bytes_remaining_ -= bytes;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">AllocateFallback</span>(bytes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

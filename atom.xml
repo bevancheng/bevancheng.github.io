@@ -6,7 +6,7 @@
   <link href="http://www.bevan.club/atom.xml" rel="self"/>
   
   <link href="http://www.bevan.club/"/>
-  <updated>2022-06-14T13:48:58.431Z</updated>
+  <updated>2022-06-15T03:03:31.923Z</updated>
   <id>http://www.bevan.club/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>找工</title>
+    <link href="http://www.bevan.club/2022/06/15/%E6%89%BE%E5%B7%A5/"/>
+    <id>http://www.bevan.club/2022/06/15/%E6%89%BE%E5%B7%A5/</id>
+    <published>2022-06-15T03:03:31.000Z</published>
+    <updated>2022-06-15T03:03:31.923Z</updated>
+    
+    <content type="html"><![CDATA[<p>2022届IC招聘信息和内推汇总<br><a href="https://docs.qq.com/doc/DV0lSeFBpRXJxUlFX">https://docs.qq.com/doc/DV0lSeFBpRXJxUlFX</a><br>2022届数字IC校招薪资爆料<br><a href="https://mp.weixin.qq.com/s/DPj2nT166Ce9wWhRW06ihw">https://mp.weixin.qq.com/s/DPj2nT166Ce9wWhRW06ihw</a><br>2022届IC春招信息汇总<br><a href="https://docs.qq.com/doc/DV1FxUVlCakRHQVJt">https://docs.qq.com/doc/DV1FxUVlCakRHQVJt</a><br>2022届数字IC秋招末班车<br><a href="https://docs.qq.com/sheet/DRndCdWZOeFFwd3l1">https://docs.qq.com/sheet/DRndCdWZOeFFwd3l1</a><br>2023届实习生招聘汇总<br><a href="https://docs.qq.com/doc/DV2JkZ3BtSnp0UkpL">https://docs.qq.com/doc/DV2JkZ3BtSnp0UkpL</a><br>笔试题合集 <a href="https://docs.qq.com/sheet/DTHB5WXB3QlJDV1Rq">https://docs.qq.com/sheet/DTHB5WXB3QlJDV1Rq</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;2022届IC招聘信息和内推汇总&lt;br&gt;&lt;a href=&quot;https://docs.qq.com/doc/DV0lSeFBpRXJxUlFX&quot;&gt;https://docs.qq.com/doc/DV0lSeFBpRXJxUlFX&lt;/a&gt;&lt;br&gt;2022届数字IC校招薪资爆料&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>EffectiveModernC++笔记1-类型推导</title>

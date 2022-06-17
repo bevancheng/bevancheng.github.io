@@ -193,8 +193,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-06-17 17:10:54" itemprop="dateCreated datePublished" datetime="2022-06-17T17:10:54+08:00">2022-06-17</time>
+              <time title="Created: 2022-06-17 17:10:54 / Modified: 17:11:34" itemprop="dateCreated datePublished" datetime="2022-06-17T17:10:54+08:00">2022-06-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,36 +218,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="现代C-的一些特性"><a href="#现代C-的一些特性" class="headerlink" title="现代C++的一些特性"></a>现代C++的一些特性</h1><h2 id="条款十三：优先考虑const-iterator而非iterator"><a href="#条款十三：优先考虑const-iterator而非iterator" class="headerlink" title="条款十三：优先考虑const_iterator而非iterator"></a>条款十三：优先考虑<code>const_iterator</code>而非<code>iterator</code></h2><h2 id="条款十四：如果函数不抛出异常请使用noexcept"><a href="#条款十四：如果函数不抛出异常请使用noexcept" class="headerlink" title="条款十四：如果函数不抛出异常请使用noexcept"></a>条款十四：如果函数不抛出异常请使用<code>noexcept</code></h2><p>c++11中，无条件的<code>noexcept</code>保证函数不会抛出任何异常。当一个函数不会抛出异常却没有加上noexcept，那么这个接口说明就有点差劲。</p>
-<p>noexcept允许编译器生成更好的代码。</p>
-<p>鼓励使用noexcept的地方：</p>
-<ul>
-<li>移动语义</li>
-<li>swap</li>
-<li>内存释放函数</li>
-<li>析构函数</li>
-</ul>
-<h2 id="条款十五：尽可能使用constexpr"><a href="#条款十五：尽可能使用constexpr" class="headerlink" title="条款十五：尽可能使用constexpr"></a>条款十五：尽可能使用constexpr</h2><p>编译期可知的值可能被存放到只读存储空间。值是编译器可知的常量整数会出现在“需要整型常量表达式”的上下文中，包括数组大小、整数模板参数（std::array对象的长度）、枚举名的值、对齐修饰符。</p>
-<p>const不提供constexpr所能保证的事情，因为const对象不需要编译期初始化它的值。</p>
-<p>constexpr函数必须能在编译器值调用的时候返回编译期结果。</p>
-<h2 id="条款十六：让const成员函数线程安全"><a href="#条款十六：让const成员函数线程安全" class="headerlink" title="条款十六：让const成员函数线程安全"></a>条款十六：让const成员函数线程安全</h2><p>确保const成员函数线程安全，除非你确定它们永远不会再并发上下文（concurrent context）中使用</p>
-<p>使用std::atomic变量比互斥量性能更高，但只适合操作单个变量或内存位置。</p>
-<p>注：需要在const成员函数里修改的一些和类状态无关的数据成员，那么这个数据成员应该由mutable来修饰。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    …</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">magicValue</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">guard</span><span class="params">(m)</span></span>;   <span class="comment">//锁定m</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (cacheValid) <span class="keyword">return</span> cachedValue;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">auto</span> val1 = <span class="built_in">expensiveComputation1</span>();</span><br><span class="line">            <span class="keyword">auto</span> val2 = <span class="built_in">expensiveComputation2</span>();</span><br><span class="line">            cachedValue = val1 + val2;</span><br><span class="line">            cacheValid = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> cachedValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;                                           <span class="comment">//解锁m</span></span><br><span class="line">    …</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">mutable</span> std::mutex m;</span><br><span class="line">    <span class="keyword">mutable</span> <span class="type">int</span> cachedValue;                    <span class="comment">//不再用atomic</span></span><br><span class="line">    <span class="keyword">mutable</span> <span class="type">bool</span> cacheValid&#123; <span class="literal">false</span> &#125;;           <span class="comment">//不再用atomic</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="条款十七：理解特殊成员函数的生成"><a href="#条款十七：理解特殊成员函数的生成" class="headerlink" title="条款十七：理解特殊成员函数的生成"></a>条款十七：理解特殊成员函数的生成</h2><p>特殊成员函数指c++自己生成的函数。C++98有四个：默认构造函数、析构函数、拷贝构造函数、拷贝赋值运算符。</p>
-<p>C++11加入了移动构造函数和移动赋值运算符。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    …</span><br><span class="line">    <span class="built_in">Widget</span>(Widget&amp;&amp; rhs);               <span class="comment">//移动构造函数</span></span><br><span class="line">    Widget&amp; <span class="keyword">operator</span>=(Widget&amp;&amp; rhs);    <span class="comment">//移动赋值运算符</span></span><br><span class="line">    …</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>移动操作仅在需要时生成，如果生成了，就会对类的non-static数据成员执行逐成员的移动。即移动构造函数根据rhs参数里的对应成员构造出新的non-static部分。移动构造函数也移动构造基类部分，移动复制运算符也移动赋值基类部分（如果有的话）。</p>
-<p>两个拷贝操作是独立的：声明一个不会限制编译器生成另一个。如声明了一个拷贝构造，但没声明拷贝赋值，当你用到了拷贝赋值，编译器会帮助生成拷贝赋值。</p>
-<p>两个移动操作不是独立的：如果声明了其中一个，编译器不会生成另一个。当声明一个移动构造函数，就表明对于移动操作的实现，于编译器生成的默认的逐成员移动有区别，如果移动构造有问题，那么逐成员的移动赋值也是可能有问题的。所以声明移动构造会阻止编译器生成移动赋值，反之亦然。</p>
-<p>如果一个类显式声明拷贝操作，编译器就不会生成移动操作。解释是，如果声明了拷贝操作，就暗示了平常的拷贝对象方法（逐成员拷贝）不适用此类，编译器就会明白如果逐成员拷贝对拷贝操作不合适，那么逐成员移动对于移动操作也是不合适的。</p>
-<p>Rule of Three规则：如果声明了拷贝构造函数、拷贝赋值运算符或者析构函数三者之一，就应该声明其余两个。用户接管拷贝操作一般都意味着该类会对其他资源进行管理（1）如果一种资源管理需要在一个拷贝操作中完成，那么也会在另一个拷贝操作内完成（2）类的析构函数也需要参与资源的管理（释放）。通常需要管理的是内存，标准库里管理内存的类都声明了the big three。</p>
-<p>当且仅当：类中无拷贝操作、类中无移动操作、类中无用户定义的析构，才会生成移动操作。</p>
-<p>C++11抛弃了已声明拷贝操作或析构函数的类的拷贝操作的自动生成。如果还想自动生成，用&#x3D;default</p>
-<p>因为移动构造函数的生成条件很苛刻，所以可能会导致很隐蔽的性能问题，即拷贝代替移动，这时候将拷贝构造函数声明为&#x3D;default可以解决。</p>
-
+          <h1 id="现代C-的一些特性"><a href="#现代C-的一些特性" class="headerlink" title="现代C++的一些特性"></a>现代C++的一些特性</h1><h2 id="条款十三：优先考虑const-iterator而非iterator"><a href="#条款十三：优先考虑const-iterator而非iterator" class="headerlink" title="条款十三：优先考虑const_iterator而非iterator"></a>条款十三：优先考虑<code>const_iterator</code>而非<code>iterator</code></h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/17/%E3%80%8AEffectiveModernCpp%E3%80%8B2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
